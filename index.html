@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khai trương Aladdin MB</title>
+<meta name="description" content="Theo dõi cơ sở sắp và mới khai trương: tiến độ chạy ads trước khai trương, doanh thu từ ngày khai trương, gợi ý tăng/giảm ngân sách.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f4f7fb; --card:#fff; --line:#e3e8f0; --line2:#eef2f7;
+  --ink:#0f172a; --ink2:#475569; --ink3:#94a3b8;
+  --brand:#2a78d6; --brand-soft:#e8f1fc;
+  --ok:#0f9d58; --ok-soft:#e6f6ee; --info:#2a78d6; --info-soft:#e8f1fc;
+  --warn:#b7791f; --warn-soft:#fdf4e1; --bad:#e34948; --bad-soft:#fdecec; --gray-soft:#eef2f7;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit;color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding:16px}
+header.top{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;margin-bottom:12px}
+h1{font-size:22px;margin:0;letter-spacing:-.01em}
+.sub{color:var(--ink2);font-size:13px}
+.fresh{font-size:12px;color:var(--ink2);text-align:right}
+.fresh b{color:var(--ink)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;cursor:pointer;font-weight:600;color:var(--ink2)}
+.tab.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.card h2{font-size:16px;margin:0 0 2px}
+.card .hint{color:var(--ink2);font-size:12px;margin:0 0 12px}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi .l{font-size:12px;color:var(--ink2)}
+.kpi .v{font-size:22px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12px;margin-top:2px;color:var(--ink2)}
+.tag{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;white-space:nowrap}
+.c-ok{background:var(--ok-soft);color:var(--ok)} .c-info{background:var(--info-soft);color:var(--info)}
+.c-warn{background:var(--warn-soft);color:var(--warn)} .c-bad{background:var(--bad-soft);color:var(--bad)} .c-gray{background:var(--gray-soft);color:var(--ink2)}
+.brand{display:inline-block;border-radius:6px;padding:1px 7px;font-size:11.5px;font-weight:700;color:#fff;margin-right:6px;vertical-align:1px}
+.b-WF{background:#d9480f} .b-TL{background:#a61e4d} .b-LW{background:#b7791f} .b-KH{background:#2b8a3e} .b-GM{background:#364fc7}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th{font-size:12px;color:var(--ink2);font-weight:600;text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px;border-bottom:1px solid var(--line2);vertical-align:top;font-size:13px}
+td.r,th.r{text-align:right}
+tr.click{cursor:pointer} tr.click:hover td{background:#f8fafd}
+.small{font-size:12px;color:var(--ink2)}
+.muted{color:var(--ink3)}
+.bar{height:8px;border-radius:99px;background:var(--line2);overflow:hidden;margin-top:5px;min-width:90px}
+.bar i{display:block;height:100%;background:var(--brand)}
+.bar i.over{background:var(--bad)}
+.alerts{display:grid;gap:8px}
+.alert{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-left-width:5px;border-radius:10px;padding:10px 12px;background:#fff}
+.alert.bad{border-left-color:var(--bad)} .alert.warn{border-left-color:#eda100} .alert.ok{border-left-color:var(--ok)} .alert.info{border-left-color:var(--info)}
+.alert b{font-weight:600}
+.vgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.vcard{margin:0}
+.vhead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:6px}
+.vname{font-weight:700;font-size:16px}
+.mini{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:10px 0}
+.mini .l{font-size:11.5px;color:var(--ink2)} .mini .v{font-weight:700;font-variant-numeric:tabular-nums}
+.verdict{border-radius:10px;padding:9px 12px;margin:8px 0;font-size:13px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+svg text{font-family:inherit}
+details{margin-top:6px} summary{cursor:pointer;color:var(--brand);font-weight:600;font-size:13px}
+ul.how{margin:8px 0 0;padding-left:18px;color:var(--ink2);font-size:13px} ul.how li{margin:3px 0}
+code{background:var(--gray-soft);border-radius:5px;padding:1px 5px;font-size:12px}
+.err{padding:30px;text-align:center;color:var(--bad)}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.vgrid{grid-template-columns:1fr}.mini{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div><h1>Khai trương Aladdin Miền Bắc</h1><div class="sub">Cơ sở sắp và mới khai trương: ads trước khai trương có đúng thiết kế không, doanh thu từ ngày khai trương đang ra sao.</div></div>
+    <div class="fresh" id="fresh">Đang tải…</div>
+  </header>
+  <div id="app"><div class="err" style="color:var(--ink2)">Đang tải số liệu…</div></div>
+</div>
+<script>
+var GIST='380f992c548c95c0cdf52888e948a040', USER='PhuPD';
+var D=null, VIEW='all';
+var MON=['01','02','03','04','05','06','07','08','09','10','11','12'];
+
+// ---------- tiện ích ----------
+function todayISO(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Ho_Chi_Minh'}).format(new Date())}
+function t(iso){var p=iso.split('-');return Date.UTC(+p[0],+p[1]-1,+p[2])}
+function addD(iso,n){var d=new Date(t(iso)+n*864e5);return d.toISOString().slice(0,10)}
+function diff(a,b){return Math.round((t(a)-t(b))/864e5)}
+function dm(iso){return iso?iso.slice(8,10)+'/'+iso.slice(5,7):'—'}
+function dmy(iso){return iso?iso.slice(8,10)+'/'+iso.slice(5,7)+'/'+iso.slice(0,4):'—'}
+function num(n,d){return n.toLocaleString('vi-VN',{maximumFractionDigits:d||0})}
+function money(n){var a=Math.abs(n);if(a>=1e9)return num(n/1e9,2)+' tỷ';if(a>=1e6)return num(n/1e6,a>=1e7?1:2)+' tr';if(a>=1e3)return num(n/1e3,0)+'k';return num(n)}
+function pct(x,d){return num(x*100,d==null?1:d)+'%'}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function sum(o,f){var s=0;for(var k in o){if(!f||f(k))s+=o[k]}return s}
+function tag(c,txt){return '<span class="tag c-'+c+'">'+esc(txt)+'</span>'}
+function brandTag(b){return '<span class="brand b-'+b+'">'+esc(D.brands[b]||b)+'</span>'}
+var TODAY=todayISO();
+
+// ---------- kế hoạch ads (quy tắc anh đặt) ----------
+function planFor(v){
+  var R=D.rules, open=v.openDate, out=[], i;
+  if(v.type==='shophouse'){var c=R.shophouse;for(i=0;i<c.daysBefore;i++){out.push({d:addD(open,-(c.daysBefore-i)),p:Math.round((c.from+(c.to-c.from)*(c.daysBefore>1?i/(c.daysBefore-1):0))/1000)*1000})}}
+  else{var m=R.mall;for(i=0;i<m.daysBefore;i++){out.push({d:addD(open,-(m.daysBefore-i)),p:m.perDay})}}
+  return out;
+}
+
+// ---------- tính toán + quyết định ----------
+function tot(a){return a?a[0]+a[1]+a[2]+a[3]:0}
+function calc(v){
+  var R=D.rules, open=v.openDate, yest=addD(TODAY,-1), x={v:v,budget:R.budget}, up=D.bcUpTo[v.brand]||null;
+  x.daysToOpen=open?diff(open,TODAY):null;
+  x.phase=(open&&TODAY>=open)?'post':'pre';
+  x.plan=open?planFor(v):[];
+  x.planStart=x.plan.length?x.plan[0].d:null;
+  var s=[0,0,0,0],buy=0,kh=0,spUp=0;
+  for(var d in v.days){var a=v.days[d];if(d<=TODAY){for(var i=0;i<4;i++)s[i]+=a[i];buy+=a[4];kh+=a[5];if(!up||d<=up)spUp+=tot(a)}}
+  x.ownB=s[0];x.ownM=s[1];x.shB=s[2];x.shM=s[3];x.own=s[0]+s[1];x.share=s[2]+s[3];x.biet=s[0]+s[2];x.mua=s[1]+s[3];
+  x.spend=x.own+x.share;x.buy=buy;x.khtn=kh;
+  x.todaySpend=tot(v.days[TODAY]);x.yestSpend=tot(v.days[yest]);
+  x.cumPlanY=0;x.cumActY=0;
+  x.plan.forEach(function(p){if(p.d<=yest)x.cumPlanY+=p.p});
+  for(var d2 in v.days){if(d2<=yest)x.cumActY+=tot(v.days[d2])}
+  x.todayPlan=(x.plan.filter(function(p){return p.d===TODAY})[0]||{p:0}).p;
+  x.yestPlan=(x.plan.filter(function(p){return p.d===yest})[0]||{p:0}).p;
+  x.hasAds=x.spend>0||v.own.length>0||v.share.length>0;
+  x.budgetUsed=x.spend/x.budget;
+  // doanh thu: tính từ ngày đầu tiên BC có doanh thu (kể cả mở bán trước khai trương)
+  x.bcUpTo=up;x.rev=0;x.revList=[];x.revStart=null;
+  if(v.bcFound&&up){
+    Object.keys(v.rev).sort().forEach(function(k){if(k<=up&&k<=TODAY){if(!x.revStart&&v.rev[k]>0)x.revStart=k;if(x.revStart){x.revList.push([k,v.rev[k]]);x.rev+=v.rev[k]}}});
+  }
+  x.revDays=x.revStart?diff(up,x.revStart)+1:0;
+  x.costRatio=x.rev>0?spUp/x.rev:null;
+  x.bench=(D.bench[v.brand]||{}).ratio||null;
+  x.revVerdict=(x.rev>0||x.phase==='post')?verdictPost(x):null;
+  x.verdict=x.phase==='pre'?verdictPre(x):x.revVerdict;
+  return x;
+}
+
+function verdictPre(x){
+  var R=D.rules,v=x.v,T=R.onTrack,need=x.plan.length?x.plan[x.plan.length-1].p:0;
+  if(x.budgetUsed>1)return {c:'bad',l:'Vượt ngân sách 15tr',why:'Đã chi '+money(x.spend)+' / '+money(x.budget)+' trước khi khai trương. Cân nhắc dừng bớt.',sev:3};
+  if(x.cumPlanY===0&&x.todayPlan===0){
+    if(x.spend>0)return {c:'info',l:'Chạy sớm hơn kế hoạch',why:'Đã chi '+money(x.spend)+' dù kế hoạch chỉ bắt đầu '+dm(x.planStart)+'.',sev:1};
+    var left=diff(x.planStart,TODAY);
+    if(left<=2)return {c:'warn',l:'Sắp tới ngày chạy',why:'Kế hoạch bắt đầu '+dm(x.planStart)+' (còn '+left+' ngày). Nhắc team order content và setup campaign.',sev:2};
+    return {c:'gray',l:'Chưa tới ngày chạy',why:'Bắt đầu '+dm(x.planStart)+', cần khoảng '+money(x.plan[0].p)+'/ngày.',sev:0};
+  }
+  if(x.cumPlanY===0){ // hôm nay là ngày đầu của kế hoạch
+    if(x.cumActY>0)return {c:'info',l:'Đã chạy sớm hơn kế hoạch',why:'Đã chi '+money(x.cumActY)+' trước ngày đầu kế hoạch ('+dm(x.planStart)+'); hôm nay '+money(x.todaySpend)+' (kế hoạch '+money(x.todayPlan)+'). Soát để không cháy ngân sách '+money(x.budget)+' trước khi mở.',sev:1};
+    if(x.todaySpend>0)return {c:'ok',l:'Đã lên ads ngày đầu',why:'Hôm nay đã chi '+money(x.todaySpend)+' (kế hoạch '+money(x.todayPlan)+').',sev:0};
+    return {c:'bad',l:'Hôm nay chưa chạy',why:'Ngày đầu kế hoạch ('+money(x.todayPlan)+') nhưng chưa thấy chi tiêu. '+(x.hasAds?'Có campaign nhưng chưa tiêu tiền.':'Chưa có campaign nào khớp cơ sở này.'),sev:3};
+  }
+  if(!x.hasAds)return {c:'bad',l:'Chưa thấy ads',why:'Kế hoạch đã chạy từ '+dm(x.planStart)+' (cần '+money(x.cumPlanY)+' tới hôm qua) nhưng chưa có campaign nào khớp. Hỏi team Digital hoặc nhờ AI gán campaign.',sev:3};
+  var r=x.cumActY/x.cumPlanY, gap=x.cumPlanY-x.cumActY;
+  var stopped=x.yestSpend===0&&x.yestPlan>0&&x.cumActY>0;
+  if(stopped)return {c:'bad',l:'Ngừng chạy',why:'Hôm qua chi 0 (kế hoạch '+money(x.yestPlan)+'). Lũy kế '+pct(r,0)+' kế hoạch.',sev:3};
+  if(r>T.high)return {c:'warn',l:'Vượt kế hoạch',why:'Lũy kế '+money(x.cumActY)+' = '+pct(r,0)+' kế hoạch ('+money(x.cumPlanY)+'). Soát lại để không cháy ngân sách trước ngày mở.',sev:2};
+  if(r>=T.low)return {c:'ok',l:'Đúng tiến độ',why:'Lũy kế '+money(x.cumActY)+' = '+pct(r,0)+' kế hoạch ('+money(x.cumPlanY)+').',sev:0};
+  if(r>=T.slow)return {c:'warn',l:'Chạy chậm',why:'Lũy kế '+money(x.cumActY)+' = '+pct(r,0)+' kế hoạch. Thiếu '+money(gap)+': nâng ngân sách các ngày còn lại (cần khoảng '+money(need)+'/ngày ở ngày cuối).',sev:2};
+  return {c:'bad',l:'Chậm nặng',why:'Lũy kế '+money(x.cumActY)+' chỉ '+pct(r,0)+' kế hoạch. Thiếu '+money(gap)+', cần xử lý ngay.',sev:3};
+}
+
+function verdictPost(x){
+  var R=D.rules.decision,v=x.v;
+  if(!v.revenueCode)return {c:'gray',l:'Chưa đo được doanh thu',why:'BC chưa có mã cơ sở này. Báo AI gán mã khi BC thêm dòng.',sev:1};
+  if(!v.bcFound)return {c:'warn',l:'Không thấy mã '+v.revenueCode+' trong BC',why:'Kiểm tra mã trong tab tháng của file BC Doanh thu - Chi phí.',sev:2};
+  if(x.rev<=0)return {c:'gray',l:'Chờ BC có doanh thu',why:'BC mới tới '+dm(x.bcUpTo)+', mã '+v.revenueCode+' chưa có doanh thu nào.',sev:1};
+  var left=1-x.budgetUsed, perDay=x.rev/x.revDays, rn=x.revList.slice(-3), recent=rn.reduce(function(s,a){return s+a[1]},0)/rn.length;
+  var first=x.revList.slice(0,Math.min(7,x.revList.length)), base=first.reduce(function(s,a){return s+a[1]},0)/first.length;
+  var fade=x.revList.length>=5&&recent<0.7*base;
+  var base2='Doanh thu từ '+dm(x.revStart)+': '+money(x.rev)+' ('+x.revDays+' ngày, TB '+money(perDay)+'/ngày). CP ads/doanh thu '+pct(x.costRatio,2)+(x.bench?' (brand '+pct(x.bench,2)+')':'')+'.';
+  if(!x.bench)return {c:'gray',l:'Theo dõi',why:base2+' Thiếu mốc CP/DT của brand.',sev:1};
+  if(x.costRatio<=x.bench){
+    if(left<=1-R.budgetNearEnd)return {c:'ok',l:'Hiệu quả, sắp hết ngân sách',why:base2+' Đã dùng '+pct(x.budgetUsed,0)+' ngân sách 15tr: cân nhắc cấp thêm.',sev:1};
+    return {c:'ok',l:'Tăng ngân sách',why:base2+' Rẻ hơn mức brand, ngân sách còn '+money(x.budget-x.spend)+'.'+(fade?' Lưu ý doanh thu 3 ngày gần nhất giảm so với tuần đầu.':''),sev:1};
+  }
+  var newly=x.revDays<R.newDays;
+  if(x.costRatio>x.bench*R.costRatioHoldX&&!newly)return {c:'bad',l:'Giảm ngân sách',why:base2+' Cao hơn '+num(x.costRatio/x.bench,1)+' lần mức brand.',sev:3};
+  if(x.costRatio>x.bench*R.costRatioHoldX)return {c:'warn',l:'Giữ, theo dõi sát',why:base2+' Cao hơn mức brand nhưng mới bán '+x.revDays+' ngày (<'+R.newDays+').',sev:2};
+  return {c:'info',l:'Giữ và tối ưu',why:base2+' Cao hơn mức brand nhưng trong ngưỡng '+num(R.costRatioHoldX,1)+' lần.'+(fade?' Doanh thu đang giảm so với tuần đầu.':''),sev:1};
+}
+
+// ---------- biểu đồ ----------
+function chartPre(x){
+  var v=x.v,open=v.openDate,start=x.planStart||addD(open,-3);
+  var first=Object.keys(v.days).sort()[0]; if(first&&first<start)start=first;
+  var days=[],d=start;while(d<=open){days.push(d);d=addD(d,1)}
+  var plan={};x.plan.forEach(function(p){plan[p.d]=p.p});
+  var max=Math.max.apply(null,days.map(function(k){return Math.max(plan[k]||0,tot(v.days[k]))}).concat([100000]));
+  var W=520,H=150,pl=34,pb=22,pt=8,n=days.length,bw=(W-pl-6)/n,s='',h=function(val){return (H-pt-pb)*val/max};
+  [0,.5,1].forEach(function(f){var y=pt+(H-pt-pb)*(1-f);s+='<line x1="'+pl+'" x2="'+W+'" y1="'+y+'" y2="'+y+'" stroke="#e3e8f0"/><text x="'+(pl-4)+'" y="'+(y+3)+'" text-anchor="end" font-size="10" fill="#94a3b8">'+money(max*f)+'</text>'});
+  days.forEach(function(k,i){
+    var x0=pl+i*bw,pv=plan[k]||0,a=v.days[k]||[0,0,0,0],own=a[0]+a[1],sh=a[2]+a[3],now=k===TODAY;
+    if(pv)s+='<rect x="'+(x0+bw*.1)+'" y="'+(H-pb-h(pv))+'" width="'+bw*.8+'" height="'+h(pv)+'" rx="3" fill="#eef2f7" stroke="#94a3b8" stroke-dasharray="3 2"/>';
+    if(own)s+='<rect x="'+(x0+bw*.28)+'" y="'+(H-pb-h(own))+'" width="'+bw*.44+'" height="'+h(own)+'" fill="#2a78d6" opacity="'+(now?.55:1)+'"/>';
+    if(sh)s+='<rect x="'+(x0+bw*.28)+'" y="'+(H-pb-h(own+sh))+'" width="'+bw*.44+'" height="'+h(sh)+'" fill="#6250d6" opacity="'+(now?.55:1)+'"/>';
+    s+='<text x="'+(x0+bw/2)+'" y="'+(H-6)+'" text-anchor="middle" font-size="10" fill="'+(now?'#0f172a':'#94a3b8')+'" font-weight="'+(now?700:400)+'">'+dm(k)+'</text>';
+    if(k===open)s+='<text x="'+(x0+bw/2)+'" y="'+(pt+2)+'" text-anchor="middle" font-size="10" fill="#e34948" font-weight="700">KT</text>';
+  });
+  return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Chi ads mỗi ngày so với kế hoạch">'+s+'</svg>'+
+    '<div class="legend"><span><i style="background:#eef2f7;border:1px dashed #94a3b8"></i>Kế hoạch/ngày</span><span><i style="background:#2a78d6"></i>Camp riêng</span><span><i style="background:#6250d6"></i>Camp chung (phần chia)</span><span>hôm nay nhạt: chưa chốt ngày</span></div>';
+}
+
+function chartPost(x){
+  var v=x.v,open=v.openDate,days=[],d=(x.revStart&&x.revStart<open)?x.revStart:open;
+  while(d<=TODAY){days.push(d);d=addD(d,1)}
+  var rv={};x.revList.forEach(function(a){rv[a[0]]=a[1]});
+  var maxR=Math.max.apply(null,days.map(function(k){return rv[k]||0}).concat([1]));
+  var maxA=Math.max.apply(null,days.map(function(k){return tot(v.days[k])}).concat([1]));
+  var W=520,H=150,pl=40,pb=22,pt=8,n=Math.max(days.length,6),bw=(W-pl-6)/n,s='';
+  [0,.5,1].forEach(function(f){var y=pt+(H-pt-pb)*(1-f);s+='<line x1="'+pl+'" x2="'+W+'" y1="'+y+'" y2="'+y+'" stroke="#e3e8f0"/><text x="'+(pl-4)+'" y="'+(y+3)+'" text-anchor="end" font-size="10" fill="#94a3b8">'+money(maxR*f)+'</text>'});
+  var pts=[];
+  days.forEach(function(k,i){
+    var x0=pl+i*bw,h=(H-pt-pb)*(rv[k]||0)/maxR;
+    if(rv[k])s+='<rect x="'+(x0+bw*.15)+'" y="'+(H-pb-h)+'" width="'+bw*.7+'" height="'+h+'" rx="3" fill="#1baf7a"/>';
+    var a=tot(v.days[k]);pts.push([x0+bw/2,H-pb-(H-pt-pb)*a/maxA]);
+    s+='<text x="'+(x0+bw/2)+'" y="'+(H-6)+'" text-anchor="middle" font-size="10" fill="#94a3b8">'+dm(k)+'</text>';
+  });
+  if(pts.length>1)s+='<polyline fill="none" stroke="#eb6834" stroke-width="2" points="'+pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' ')+'"/>';
+  pts.forEach(function(p){s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3" fill="#eb6834"/>'});
+  return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Doanh thu và chi ads theo ngày kể từ khai trương">'+s+'</svg>'+
+    '<div class="legend"><span><i style="background:#1baf7a"></i>Doanh thu/ngày (trục trái)</span><span><i style="background:#eb6834"></i>Chi ads/ngày (đường, thang riêng, tối đa '+money(maxA)+')</span></div>';
+}
+
+function gantt(xs){
+  var list=xs.filter(function(x){return x.v.openDate});
+  if(!list.length)return '';
+  var min=addD(TODAY,-14),max=addD(TODAY,14);
+  list.forEach(function(x){var o=x.v.openDate;if(o>max)max=addD(o,4);var ps=x.planStart;if(ps&&ps<min)min=ps});
+  var span=diff(max,min)+1,W=1180,L=210,rowH=30,H=rowH*list.length+34,cw=(W-L-10)/span,s='';
+  function X(d){return L+diff(d,min)*cw}
+  for(var i=0;i<span;i++){var dd=addD(min,i),wd=new Date(t(dd)).getUTCDay();
+    if(wd===1||i===0||dd.slice(8)==='01')s+='<line x1="'+X(dd)+'" x2="'+X(dd)+'" y1="22" y2="'+(H-4)+'" stroke="#eef2f7"/><text x="'+(X(dd)+2)+'" y="14" font-size="10" fill="#94a3b8">'+dm(dd)+'</text>'}
+  list.forEach(function(x,r){
+    var y=28+r*rowH,v=x.v;
+    s+='<text x="0" y="'+(y+16)+'" font-size="12" font-weight="600" fill="#0f172a">'+esc(v.name.length>26?v.name.slice(0,25)+'…':v.name)+'</text>';
+    if(x.plan.length){var a=X(x.plan[0].d),b=X(v.openDate);s+='<rect x="'+a+'" y="'+(y+4)+'" width="'+(b-a)+'" height="'+(rowH-12)+'" rx="5" fill="#e8f1fc" stroke="#2a78d6" stroke-opacity=".35"/>'}
+    var mx=Math.max.apply(null,Object.keys(v.days).map(function(k){return tot(v.days[k])}).concat([1]));
+    for(var k in v.days){if(tot(v.days[k])>0&&k>=min){var h=(rowH-10)*tot(v.days[k])/Math.max(mx,500000);s+='<rect x="'+(X(k)+1)+'" y="'+(y+rowH-8-h)+'" width="'+Math.max(cw-2,2)+'" height="'+h+'" fill="#2a78d6"/>'}}
+    var ox=X(v.openDate)+cw/2;
+    s+='<path d="M'+ox+' '+(y+3)+' l7 7 l-7 7 l-7 -7z" fill="'+(x.phase==='post'?'#0f9d58':'#e34948')+'"/>';
+    s+='<text x="'+(ox+11)+'" y="'+(y+14)+'" font-size="11" fill="#475569">'+dm(v.openDate)+(v.reschedules?' · dời '+v.reschedules+' lần':'')+'</text>';
+  });
+  var tx=X(TODAY)+cw/2;
+  s+='<line x1="'+tx+'" x2="'+tx+'" y1="18" y2="'+(H-2)+'" stroke="#e34948" stroke-width="1.5" stroke-dasharray="4 3"/><text x="'+tx+'" y="10" text-anchor="middle" font-size="10" font-weight="700" fill="#e34948">Hôm nay</text>';
+  return '<div class="tbl-wrap"><svg viewBox="0 0 '+W+' '+H+'" width="100%" style="min-width:820px" role="img" aria-label="Lịch khai trương">'+s+'</svg></div>'+
+    '<div class="legend"><span><i style="background:#e8f1fc;border:1px solid #9bbfe8"></i>Khung chạy ads trước khai trương theo thiết kế</span><span><i style="background:#2a78d6"></i>Chi ads thực tế mỗi ngày</span><span style="color:#e34948">◆ ngày khai trương (xanh lá: đã mở)</span></div>';
+}
+
+// ---------- hiển thị ----------
+function openLabel(x){var n=x.daysToOpen;if(n==null)return '—';if(n>0)return 'còn '+n+' ngày';if(n===0)return 'khai trương hôm nay';return 'đã mở '+(-n+1)+' ngày'}
+var SEG=[['ownB','#7fb2ec','Riêng · biết tin'],['ownM','#2a78d6','Riêng · phễu mua'],['shB','#c3b8f0','Chung (chia) · biết tin'],['shM','#6250d6','Chung (chia) · phễu mua']];
+function stackBar(x){
+  var m=Math.max(x.budget,x.spend,1);
+  return '<div style="position:relative;display:flex;height:12px;border-radius:99px;overflow:hidden;background:var(--line2);min-width:150px">'+SEG.map(function(g){return '<i style="width:'+(x[g[0]]/m*100)+'%;background:'+g[1]+'" title="'+g[2]+': '+money(x[g[0]])+'"></i>'}).join('')+'</div>'+
+    '<div style="position:relative;height:6px"><span style="position:absolute;left:'+(x.budget/m*100)+'%;top:0;width:2px;height:6px;background:#e34948"></span></div>';
+}
+function adsCell(x){
+  if(x.phase==='post')return '<b>'+money(x.spend)+'</b><div class="small">tổng từ đầu</div>';
+  if(!x.plan.length)return '—';
+  return '<b>'+money(x.cumActY)+'</b> <span class="small">/ KH '+money(x.cumPlanY)+'</span><div class="small">tới hôm qua'+(x.todaySpend?' · nay '+money(x.todaySpend):'')+'</div>';
+}
+function revCell(x){
+  if(!x.v.revenueCode)return '<span class="muted">chưa có mã BC</span>';
+  if(x.rev<=0)return '<span class="muted">chưa có doanh thu</span>';
+  return '<b>'+money(x.rev)+'</b><div class="small">từ '+dm(x.revStart)+' · '+x.revDays+' ngày · TB '+money(x.rev/x.revDays)+'/ngày</div>';
+}
+function verdictTags(x){return tag(x.verdict.c,x.verdict.l)+(x.phase==='pre'&&x.revVerdict?'<div style="margin-top:4px">'+tag(x.revVerdict.c,'DT: '+x.revVerdict.l)+'</div>':'')}
+
+function render(){
+  var xs=D.venues.map(calc).sort(function(a,b){return (a.v.openDate||'9')<(b.v.openDate||'9')?-1:1});
+  var pre=xs.filter(function(x){return x.phase==='pre'}),post=xs.filter(function(x){return x.phase==='post'});
+  var shown=VIEW==='pre'?pre:VIEW==='post'?post:xs;
+  var urgent=xs.filter(function(x){return x.verdict.sev>=3||(x.revVerdict&&x.revVerdict.sev>=3)}).length;
+  var soon=pre.filter(function(x){return x.daysToOpen<=7});
+  var T={own:0,share:0,biet:0,mua:0,spend:0,rev:0};xs.forEach(function(x){for(var k in T)T[k]+=x[k]});
+  var totBud=xs.length*D.rules.budget;
+  var h='<div class="kpis">'+
+    kpi('Cơ sở đang theo dõi',xs.length,pre.length+' sắp khai trương · '+post.length+' đã khai trương')+
+    kpi('Cần xử lý ngay',urgent,urgent?'ads chậm/ngừng hoặc doanh thu kém':'chưa có cảnh báo đỏ')+
+    kpi('Khai trương trong 7 ngày',soon.length,soon.length?soon.map(function(x){return x.v.name}).join(', '):'—')+
+    kpi('Ngân sách ads đã dùng',money(T.spend),pct(totBud?T.spend/totBud:0,0)+' của '+money(totBud)+' · riêng '+money(T.own)+' + chung '+money(T.share))+
+    kpi('Doanh thu ghi nhận trong BC',money(T.rev),'tính từ ngày có doanh thu đầu tiên của từng cơ sở')+
+    '</div>';
+
+  var al=[];
+  xs.forEach(function(x){
+    if(x.verdict.sev>=2||(x.phase==='pre'&&x.daysToOpen<=3))al.push({x:x,vd:x.verdict,k:'ads'});
+    if(x.phase==='pre'&&x.revVerdict&&x.revVerdict.sev>=2)al.push({x:x,vd:x.revVerdict,k:'dt'});
+  });
+  al.sort(function(a,b){return b.vd.sev-a.vd.sev||(a.x.v.openDate<b.x.v.openDate?-1:1)});
+  h+='<div class="card"><h2>Cần quyết định ngay</h2><p class="hint">Xếp theo mức khẩn. Tự cập nhật khi số liệu về.</p><div class="alerts">'+
+    (al.length?al.map(function(a){var x=a.x;return '<div class="alert '+(a.vd.c==='gray'?'info':a.vd.c)+'"><div style="flex:1"><b>'+brandTag(x.v.brand)+esc(x.v.name)+'</b> · '+esc(openLabel(x))+' ('+dm(x.v.openDate)+') &nbsp;'+tag(a.vd.c,(a.k==='dt'?'Doanh thu: ':'')+a.vd.l)+'<div class="small" style="margin-top:3px;color:var(--ink)">'+esc(a.vd.why)+'</div></div></div>'}).join(''):'<div class="small">Không có cơ sở nào cần xử lý gấp.</div>')+
+    '</div></div>';
+
+  h+='<div class="tabs">'+[['all','Tất cả ('+xs.length+')'],['pre','Sắp khai trương ('+pre.length+')'],['post','Mới khai trương ('+post.length+')']].map(function(a){return '<button class="tab '+(VIEW===a[0]?'on':'')+'" data-v="'+a[0]+'">'+a[1]+'</button>'}).join('')+'</div>';
+
+  h+='<div class="card"><h2>Lịch khai trương và nhịp chạy ads</h2><p class="hint">Mỗi hàng là một cơ sở: khung xanh là giai đoạn ads trước khai trương theo thiết kế, cột xanh đậm là chi ads thực tế (riêng + phần chung được chia).</p>'+gantt(shown)+'</div>';
+
+  // ngân sách tổng quan
+  var S={ownB:0,ownM:0,shB:0,shM:0,spend:0};shown.forEach(function(x){for(var k in S)S[k]+=x[k]});
+  h+='<div class="card"><h2>Ngân sách theo cơ sở: camp riêng, camp chung, biết tin, phễu mua</h2><p class="hint">Ngân sách một cơ sở = camp riêng (ký hiệu riêng, vd TLDN + Lotte) + camp chung chia đều cho số cơ sở cùng brand và khu vực (cơ sở mới tham gia chia từ '+D.rules.commonJoinDays+' ngày trước khai trương). Biết tin = camp không có chữ "mua". Vạch đỏ là ngân sách '+money(D.rules.budget)+'.</p>'+
+    '<div class="legend">'+SEG.map(function(g){return '<span><i style="background:'+g[1]+'"></i>'+g[2]+'</span>'}).join('')+'</div>'+
+    '<div class="tbl-wrap"><table><thead><tr><th>Cơ sở</th><th style="min-width:170px">Cơ cấu chi / ngân sách</th><th class="r">Tổng</th><th class="r">% NS</th><th class="r">Riêng biết tin</th><th class="r">Riêng mua</th><th class="r">Chung biết tin</th><th class="r">Chung mua</th><th class="r">Tổng biết tin</th><th class="r">Tổng mua</th></tr></thead><tbody>'+
+    shown.map(function(x){return '<tr class="click" data-go="'+x.v.id+'"><td><b>'+brandTag(x.v.brand)+esc(x.v.name)+'</b></td><td>'+stackBar(x)+'</td><td class="r"><b>'+money(x.spend)+'</b></td><td class="r">'+pct(x.budgetUsed,0)+'</td><td class="r">'+money(x.ownB)+'</td><td class="r">'+money(x.ownM)+'</td><td class="r">'+money(x.shB)+'</td><td class="r">'+money(x.shM)+'</td><td class="r">'+money(x.biet)+'</td><td class="r">'+money(x.mua)+'</td></tr>'}).join('')+
+    '<tr><td><b>Tổng</b></td><td></td><td class="r"><b>'+money(S.spend)+'</b></td><td class="r">'+pct(shown.length?S.spend/(shown.length*D.rules.budget):0,0)+'</td><td class="r"><b>'+money(S.ownB)+'</b></td><td class="r"><b>'+money(S.ownM)+'</b></td><td class="r"><b>'+money(S.shB)+'</b></td><td class="r"><b>'+money(S.shM)+'</b></td><td class="r"><b>'+money(S.ownB+S.shB)+'</b></td><td class="r"><b>'+money(S.ownM+S.shM)+'</b></td></tr>'+
+    '</tbody></table></div></div>';
+
+  h+='<div class="card"><h2>Bảng điều hành</h2><p class="hint">Bấm vào dòng để nhảy xuống chi tiết.</p><div class="tbl-wrap"><table><thead><tr><th>Cơ sở</th><th>Khai trương</th><th>Chi ads (thực / kế hoạch)</th><th>Doanh thu trong BC</th><th>CP ads / DT</th><th>Quyết định</th></tr></thead><tbody>'+
+    shown.map(function(x){var v=x.v;return '<tr class="click" data-go="'+v.id+'"><td><b>'+brandTag(v.brand)+esc(v.name)+'</b><div class="small">'+esc(v.place)+'</div></td>'+
+      '<td><b>'+dm(v.openDate)+'</b>'+(v.reschedules?'<span class="small"> · dời '+v.reschedules+'</span>':'')+'<div class="small">'+esc(openLabel(x))+'</div></td>'+
+      '<td>'+adsCell(x)+'</td><td>'+revCell(x)+'</td>'+
+      '<td>'+(x.costRatio!=null?'<b>'+pct(x.costRatio,2)+'</b>'+(x.bench?'<div class="small">brand '+pct(x.bench,2)+'</div>':''):'<span class="muted">—</span>')+'</td>'+
+      '<td>'+verdictTags(x)+'</td></tr>'}).join('')+'</tbody></table></div></div>';
+
+  h+='<div class="vgrid">'+shown.map(vcard).join('')+'</div>';
+
+  if(D.unassigned&&D.unassigned.length){
+    h+='<div class="card"><h2>Camp có ký hiệu riêng chưa thuộc cơ sở nào đang theo dõi</h2><p class="hint">Cùng brand và khu vực với cơ sở đang theo dõi, bắt đầu chạy trong 3 tuần qua, nhưng có ký hiệu riêng nên KHÔNG được tính vào camp chung. Nếu thuộc một cơ sở đang theo dõi, nhờ AI thêm ký hiệu cho cơ sở đó.</p><div class="tbl-wrap"><table><thead><tr><th>Campaign</th><th>Tài khoản</th><th class="r">Đã chi</th><th>Từ</th><th>Gần nhất</th></tr></thead><tbody>'+
+      D.unassigned.map(function(c){return '<tr><td>'+esc(c.name)+'</td><td class="small">'+esc(c.account)+'</td><td class="r">'+money(c.spend)+'</td><td>'+dm(c.first)+'</td><td>'+dm(c.last)+'</td></tr>'}).join('')+'</tbody></table></div></div>';
+  }
+
+  var rest=D.catalog.filter(function(c){return !c.tracked&&(c.openActual||c.openPlan)}).sort(function(a,b){return (b.openActual||b.openPlan)<(a.openActual||a.openPlan)?-1:1});
+  h+='<div class="card"><h2>Lịch mở điểm miền Bắc 2026 (chưa theo dõi)</h2><p class="hint">Lấy từ sheet <a href="https://docs.google.com/spreadsheets/d/'+D.scheduleSource.sheetId+'" target="_blank" rel="noopener">HỌP GIAO BAN 2026 · '+esc(D.scheduleSource.tab)+'</a>. Muốn theo dõi cơ sở nào thì bảo AI "thêm … vào dashboard khai trương".</p><details><summary>Xem '+rest.length+' cơ sở khác</summary><div class="tbl-wrap"><table><thead><tr><th>Cơ sở</th><th>Địa điểm</th><th>Khai trương</th></tr></thead><tbody>'+
+    rest.map(function(c){var o=c.openActual||c.openPlan;return '<tr><td>'+esc(c.name)+'</td><td class="small">'+esc(c.place)+'</td><td>'+dm(o)+' '+(o>TODAY?tag('info','sắp mở'):tag('gray','đã mở'))+'</td></tr>'}).join('')+'</tbody></table></div></details></div>';
+
+  var R=D.rules;
+  h+='<div class="card"><h2>Cách tính</h2><ul class="how">'+
+    '<li><b>Ngân sách:</b> mỗi cơ sở '+money(R.budget)+' cho dịp khai trương.</li>'+
+    '<li><b>Camp riêng:</b> camp có nội dung và ký hiệu riêng của cơ sở (vd TLDN + Lotte): tính 100% cho cơ sở đó.</li>'+
+    '<li><b>Camp chung:</b> camp không ký hiệu riêng, chạy cắm bán kính tất cả cơ sở cùng brand + khu vực. Từ '+R.commonJoinDays+' ngày trước khai trương, bán kính cơ sở mới được cắm thêm vào camp chung. Phần của một cơ sở = chi tiêu camp chung mỗi ngày ÷ số cơ sở đang được phủ (cơ sở có doanh thu trong BC + cơ sở mới đã tới T-'+R.commonJoinDays+').</li>'+
+    '<li><b>Ngân sách một cơ sở</b> = camp riêng + phần chia từ camp chung. Biết tin = tên camp không có chữ "mua"; phễu mua = có chữ "mua".</li>'+
+    '<li><b>Kế hoạch ads:</b> shophouse trước '+R.shophouse.daysBefore+' ngày, tăng dần '+money(R.shophouse.from)+' → '+money(R.shophouse.to)+'/ngày; mall trước tối thiểu '+R.mall.daysBefore+' ngày, khoảng '+money(R.mall.perDay)+'/ngày. Đúng tiến độ = lũy kế thực/kế hoạch tới hôm qua từ '+pct(R.onTrack.low,0)+' đến '+pct(R.onTrack.high,0)+'; '+pct(R.onTrack.slow,0)+'–'+pct(R.onTrack.low,0)+' là chạy chậm; dưới '+pct(R.onTrack.slow,0)+' là chậm nặng. Chi hôm nay chưa chốt nên chỉ tham khảo.</li>'+
+    '<li><b>Doanh thu:</b> đọc file BC Doanh thu - Chi phí theo mã cơ sở, tính từ ngày đầu tiên BC ghi doanh thu (kể cả mở bán trước ngày khai trương). BC thường cập nhật tới hôm qua.</li>'+
+    '<li><b>Gợi ý tăng/giảm:</b> so CP ads / doanh thu của cơ sở với mức tháng này của brand. Bằng hoặc thấp hơn: tăng (nếu còn ngân sách). Cao hơn tới '+num(R.decision.costRatioHoldX,1)+' lần: giữ và tối ưu. Cao hơn '+num(R.decision.costRatioHoldX,1)+' lần: giảm, riêng cơ sở mới bán dưới '+R.decision.newDays+' ngày thì giữ theo dõi sát.</li>'+
+    '<li><b>Thêm/bớt cơ sở:</b> bảo AI "thêm/bỏ … khỏi dashboard khai trương". Lịch khai trương tự đồng bộ từ sheet Mở điểm MB 2026 theo tên nhà hàng.</li></ul></div>';
+  document.getElementById('app').innerHTML=h;
+}
+function kpi(l,v,d){return '<div class="kpi"><div class="l">'+esc(l)+'</div><div class="v">'+esc(v)+'</div><div class="d">'+esc(d)+'</div></div>'}
+
+function campTable(list,share){
+  if(!list.length)return '<div class="small" style="margin:6px 0">Chưa có camp.</div>';
+  return '<div class="tbl-wrap"><table><thead><tr><th>Campaign</th><th>Phễu</th>'+(share?'<th class="r">Camp chi</th><th class="r">Số cơ sở</th>':'')+'<th class="r">'+(share?'Phần cơ sở':'Chi')+'</th><th class="r">Mua</th><th>Chạy</th></tr></thead><tbody>'+
+    list.map(function(c){return '<tr><td>'+esc(c.name)+'</td><td>'+(c.funnel==='mua'?'Mua':'Biết tin')+'</td>'+(share?'<td class="r">'+money(c.campSpend)+'</td><td class="r">'+num(c.avgN,1)+'</td>':'')+'<td class="r">'+money(c.spend)+'</td><td class="r">'+num(c.buy,1)+'</td><td class="small">'+dm(c.first)+'–'+dm(c.last)+'</td></tr>'}).join('')+'</tbody></table></div>';
+}
+
+function vcard(x){
+  var v=x.v,h='<div class="card vcard" id="v-'+v.id+'"><div class="vhead"><div><div class="vname">'+brandTag(v.brand)+esc(v.name)+'</div><div class="small">'+esc(v.place)+' · '+(v.type==='mall'?'Mall':'Shophouse')+' · '+esc(v.region)+'</div></div>'+
+    '<div style="text-align:right"><b>'+dmy(v.openDate)+'</b><div class="small">'+esc(openLabel(x))+(v.reschedules?' · dời '+v.reschedules+' lần':'')+'</div></div></div>'+
+    '<div class="verdict c-'+x.verdict.c+'"><b>'+esc(x.verdict.l)+'.</b> '+esc(x.verdict.why)+'</div>'+
+    (x.phase==='pre'&&x.revVerdict?'<div class="verdict c-'+x.revVerdict.c+'"><b>Doanh thu: '+esc(x.revVerdict.l)+'.</b> '+esc(x.revVerdict.why)+'</div>':'');
+  if(x.phase==='pre'){
+    h+='<div class="mini"><div><div class="l">Thực chi tới hôm qua</div><div class="v">'+money(x.cumActY)+'</div></div><div><div class="l">Kế hoạch tới hôm qua</div><div class="v">'+money(x.cumPlanY)+'</div></div><div><div class="l">Hôm nay (đang chạy)</div><div class="v">'+money(x.todaySpend)+(x.todayPlan?' <span class="small">/ '+money(x.todayPlan)+'</span>':'')+'</div></div><div><div class="l">Ngân sách đã dùng</div><div class="v">'+pct(x.budgetUsed,0)+'</div></div></div>'+chartPre(x);
+  }else{
+    h+='<div class="mini"><div><div class="l">Doanh thu trong BC</div><div class="v">'+(v.bcFound?money(x.rev):'—')+'</div></div><div><div class="l">Chi ads tổng</div><div class="v">'+money(x.spend)+'</div></div><div><div class="l">CP ads / DT</div><div class="v">'+(x.costRatio!=null?pct(x.costRatio,2):'—')+'</div></div><div><div class="l">Lượt mua · KHTN</div><div class="v">'+num(x.buy)+' · '+num(x.khtn)+'</div></div></div>';
+  }
+  if(v.bcFound&&x.revList.length)h+=(x.phase==='pre'?'<div class="small" style="margin-top:8px"><b>Doanh thu theo ngày từ '+dm(x.revStart)+' (mở bán trước khai trương)</b></div>':'')+chartPost(x);
+  h+='<table style="margin-top:10px"><thead><tr><th>Ngân sách ads</th><th class="r">Biết tin</th><th class="r">Phễu mua</th><th class="r">Tổng</th></tr></thead><tbody>'+
+    '<tr><td>Camp riêng</td><td class="r">'+money(x.ownB)+'</td><td class="r">'+money(x.ownM)+'</td><td class="r">'+money(x.own)+'</td></tr>'+
+    '<tr><td>Camp chung (phần chia)</td><td class="r">'+money(x.shB)+'</td><td class="r">'+money(x.shM)+'</td><td class="r">'+money(x.share)+'</td></tr>'+
+    '<tr><td><b>Tổng cơ sở</b></td><td class="r"><b>'+money(x.biet)+'</b></td><td class="r"><b>'+money(x.mua)+'</b></td><td class="r"><b>'+money(x.spend)+'</b> <span class="small">/ '+money(x.budget)+'</span></td></tr></tbody></table>';
+  if(v.sheetNote)h+='<div class="small" style="margin-top:6px">Ghi chú lịch: '+esc(v.sheetNote)+'</div>';
+  if(v.note)h+='<div class="small" style="margin-top:4px">Ghi chú: '+esc(v.note)+'</div>';
+  h+='<details><summary>Camp riêng ('+v.own.length+') · '+money(x.own)+'</summary>'+campTable(v.own,false)+'</details>'+
+     '<details><summary>Camp chung ('+v.share.length+') · phần chia '+money(x.share)+'</summary>'+campTable(v.share,true)+'</details>';
+  h+='<div class="small" style="margin-top:8px">Camp riêng: '+(v.adsMatch.length?'<code>'+v.adsMatch.map(esc).join('</code> <code>')+'</code>':'chưa có ký hiệu riêng')+' · Camp chung: cùng brand, khu vực '+esc(v.region)+', chia từ '+dm(v.joinDay)+' · Mã BC: '+(v.revenueCode?'<code>'+esc(v.revenueCode)+'</code>'+(v.bcFound?'':' (chưa thấy trong BC)'):'chưa có')+'</div></div>';
+  return h;
+}
+
+// ---------- tải dữ liệu ----------
+function fetchJSON(u){return fetch(u,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})}
+function load(){
+  return fetchJSON('https://api.github.com/gists/'+GIST).then(function(g){var f=g.files['data.json'];if(!f)throw new Error('gist chưa có data.json');
+    return f.truncated?fetchJSON(f.raw_url):JSON.parse(f.content)})
+    .catch(function(){return fetchJSON('https://gist.githubusercontent.com/'+USER+'/'+GIST+'/raw/data.json?t='+Date.now())})}
+function boot(){
+  load().then(function(d){
+    D=d;
+    var g=new Date(d.generatedAt);
+    document.getElementById('fresh').innerHTML='Cập nhật <b>'+g.toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'})+'</b><br>Meta Ads tới hôm nay · BC doanh thu tới '+dm(Object.keys(d.bcUpTo).map(function(k){return d.bcUpTo[k]}).sort().pop());
+    render();
+  }).catch(function(e){document.getElementById('app').innerHTML='<div class="err">Không tải được số liệu: '+esc(e.message)+'</div>'});
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.tab');if(b){VIEW=b.dataset.v;render();return}
+  var r=e.target.closest('tr[data-go]');if(r){var el=document.getElementById('v-'+r.dataset.go);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+});
+boot();
+</script>
+</body>
+</html>
