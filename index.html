@@ -148,6 +148,7 @@ function calc(v){
 function verdictPre(x){
   var R=D.rules,v=x.v,T=R.onTrack,need=x.plan.length?x.plan[x.plan.length-1].p:0;
   if(x.budgetUsed>1)return {c:'bad',l:'Vượt ngân sách 15tr',why:'Đã chi '+money(x.spend)+' / '+money(x.budget)+' trước khi khai trương. Cân nhắc dừng bớt.',sev:3};
+  if(x.yestSpend>R.maxPerDay)return {c:'warn',l:'Vượt trần '+money(R.maxPerDay)+'/ngày',why:'Hôm qua chi '+money(x.yestSpend)+' (trần '+money(R.maxPerDay)+'/ngày cho cơ sở khai trương). Soát lại camp chung/riêng.',sev:2};
   if(x.cumPlanY===0&&x.todayPlan===0){
     if(x.spend>0)return {c:'info',l:'Chạy sớm hơn kế hoạch',why:'Đã chi '+money(x.spend)+' dù kế hoạch chỉ bắt đầu '+dm(x.planStart)+'.',sev:1};
     var left=diff(x.planStart,TODAY);
@@ -337,9 +338,9 @@ function render(){
   h+='<div class="card"><h2>Cách tính</h2><ul class="how">'+
     '<li><b>Ngân sách:</b> mỗi cơ sở '+money(R.budget)+' cho dịp khai trương.</li>'+
     '<li><b>Camp riêng:</b> camp có nội dung và ký hiệu riêng của cơ sở (vd TLDN + Lotte): tính 100% cho cơ sở đó.</li>'+
-    '<li><b>Camp chung:</b> camp không ký hiệu riêng, chạy cắm bán kính tất cả cơ sở cùng brand + khu vực. Từ '+R.commonJoinDays+' ngày trước khai trương, bán kính cơ sở mới được cắm thêm vào camp chung. Phần của một cơ sở = chi tiêu camp chung mỗi ngày ÷ số cơ sở đang được phủ (cơ sở có doanh thu trong BC + cơ sở mới đã tới T-'+R.commonJoinDays+').</li>'+
+    '<li><b>Camp chung:</b> camp không ký hiệu riêng, chạy cắm bán kính tất cả cơ sở cùng brand + khu vực. Từ '+R.commonJoinDays+' ngày trước khai trương, bán kính cơ sở mới được cắm thêm vào camp chung. Phần của một cơ sở = chi tiêu camp chung mỗi ngày ÷ số cơ sở cùng brand và khu vực có trong file BC (cộng cơ sở mới đã tới T-'+R.commonJoinDays+').</li>'+
     '<li><b>Ngân sách một cơ sở</b> = camp riêng + phần chia từ camp chung. Biết tin = tên camp không có chữ "mua"; phễu mua = có chữ "mua".</li>'+
-    '<li><b>Kế hoạch ads:</b> shophouse trước '+R.shophouse.daysBefore+' ngày, tăng dần '+money(R.shophouse.from)+' → '+money(R.shophouse.to)+'/ngày; mall trước tối thiểu '+R.mall.daysBefore+' ngày, khoảng '+money(R.mall.perDay)+'/ngày. Đúng tiến độ = lũy kế thực/kế hoạch tới hôm qua từ '+pct(R.onTrack.low,0)+' đến '+pct(R.onTrack.high,0)+'; '+pct(R.onTrack.slow,0)+'–'+pct(R.onTrack.low,0)+' là chạy chậm; dưới '+pct(R.onTrack.slow,0)+' là chậm nặng. Chi hôm nay chưa chốt nên chỉ tham khảo.</li>'+
+    '<li><b>Kế hoạch ads:</b> shophouse trước '+R.shophouse.daysBefore+' ngày, tăng dần '+money(R.shophouse.from)+' → '+money(R.shophouse.to)+'/ngày; mall trước tối thiểu '+R.mall.daysBefore+' ngày, khoảng '+money(R.mall.perDay)+'/ngày. Trần '+money(R.maxPerDay)+'/ngày cho một cơ sở. Đúng tiến độ = lũy kế thực/kế hoạch tới hôm qua từ '+pct(R.onTrack.low,0)+' đến '+pct(R.onTrack.high,0)+'; '+pct(R.onTrack.slow,0)+'–'+pct(R.onTrack.low,0)+' là chạy chậm; dưới '+pct(R.onTrack.slow,0)+' là chậm nặng. Chi hôm nay chưa chốt nên chỉ tham khảo.</li>'+
     '<li><b>Doanh thu:</b> đọc file BC Doanh thu - Chi phí theo mã cơ sở, tính từ ngày đầu tiên BC ghi doanh thu (kể cả mở bán trước ngày khai trương). BC thường cập nhật tới hôm qua.</li>'+
     '<li><b>Gợi ý tăng/giảm:</b> so CP ads / doanh thu của cơ sở với mức tháng này của brand. Bằng hoặc thấp hơn: tăng (nếu còn ngân sách). Cao hơn tới '+num(R.decision.costRatioHoldX,1)+' lần: giữ và tối ưu. Cao hơn '+num(R.decision.costRatioHoldX,1)+' lần: giảm, riêng cơ sở mới bán dưới '+R.decision.newDays+' ngày thì giữ theo dõi sát.</li>'+
     '<li><b>Thêm/bớt cơ sở:</b> bảo AI "thêm/bỏ … khỏi dashboard khai trương". Lịch khai trương tự đồng bộ từ sheet Mở điểm MB 2026 theo tên nhà hàng.</li></ul></div>';
