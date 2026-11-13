@@ -389,7 +389,7 @@ function render(){
     '</tbody></table></div></div>';
   h+='<div class="card sec"><h2>Camp chung: chia đều, không giới hạn</h2><p class="hint">Camp chung = camp không có ký hiệu riêng, chạy cắm bán kính mọi cơ sở cùng brand + khu vực. Từ '+D.rules.commonJoinDays+' ngày trước khai trương, cơ sở mới được cắm thêm vào và được chia phần. Phần của một cơ sở = chi tiêu camp chung mỗi ngày ÷ số cơ sở cùng brand + khu vực.</p>'+
     '<div class="tbl-wrap"><table><thead><tr><th>Cơ sở</th><th class="r tot">Tổng chung (lũy kế)</th><th class="r">Chung biết tin</th><th class="r">Chung mua</th></tr></thead><tbody>'+
-    shown.map(function(x){return '<tr class="click" data-go="'+x.v.id+'"><td><b>'+brandTag(x.v.brand)+esc(vn(x.v))+'</b><span class="rule">'+(x.v.joinDay?'Được chia camp chung từ '+dm(x.v.joinDay)+' (T-'+D.rules.commonJoinDays+')':'Chưa có ngày khai trương')+'</span></td><td class="r tot"><b>'+money(x.share)+'</b></td><td class="r">'+money(x.shB)+'</td><td class="r">'+money(x.shM)+'</td></tr>'}).join('')+
+    shown.map(function(x){return '<tr class="click" data-go="'+x.v.id+'"><td><b>'+brandTag(x.v.brand)+esc(vn(x.v))+'</b><span class="rule">'+(x.v.joinDay?'Được chia camp chung từ '+dm(x.v.joinDay)+' (T-'+diff(x.v.openDate,x.v.joinDay)+')':'Chưa có ngày khai trương')+'</span></td><td class="r tot"><b>'+money(x.share)+'</b></td><td class="r">'+money(x.shB)+'</td><td class="r">'+money(x.shM)+'</td></tr>'}).join('')+
     '<tr class="sumrow"><td><b>Tổng</b></td><td class="r tot"><b>'+money(S.share)+'</b></td><td class="r"><b>'+money(S.shB)+'</b></td><td class="r"><b>'+money(S.shM)+'</b></td></tr>'+
     '</tbody></table></div></div>';
 
